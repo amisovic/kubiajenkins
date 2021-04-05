@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "docker build -t amisovic/kubia:${BUILD_NUMBER} ."
-                sh "sleep 300"
+                //sh "sleep 300"
 
             }
 
