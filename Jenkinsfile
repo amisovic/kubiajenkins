@@ -9,12 +9,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "sleep 300"
                 sh "docker build -t amisovic/kubia:${BUILD_NUMBER} ."
                 sh "sleep 300"
 
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
