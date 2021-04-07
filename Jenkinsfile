@@ -1,6 +1,6 @@
 pipeline {
     environment { 
-       registry = "amisovic/test" 
+       registry = "amisovic/kubia" 
        registryCredential = 'dockerhub' 
        dockerImage = '' 
     }
@@ -17,6 +17,7 @@ pipeline {
                 //sh "docker build -t amisovic/kubia:${BUILD_NUMBER} ."
                 //sh "sleep 300"
                 script {
+                    println(registry + ":${env.BUILD_ID}")
                     docker.build registry + ":${env.BUILD_ID}"
                 }
                  
