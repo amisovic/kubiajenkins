@@ -19,6 +19,7 @@ pipeline {
                 script {
                     println(registry + ":${env.BUILD_ID}")
                     docker.build registry + ":${env.BUILD_ID}"
+                    docker.withRegistry( '', registryCredential ) { dckerImage.push() }
                 }
                  
             }
