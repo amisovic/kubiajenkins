@@ -1,9 +1,4 @@
 pipeline {
-    environment { 
-       registry = "amisovic/test" 
-       registryCredential = 'dockerhub' 
-       dockerImage = '' 
-    }
     agent any
 
     tools {
@@ -14,17 +9,20 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                //sh "docker build -t amisovic/kubia:${BUILD_NUMBER} ."
-                //sh "sleep 300"
-                script {
-                    docker.build("my-image:${env.BUILD_ID}") 
-                }
-                 
+                sh "sleep 300"
+                sh "docker build -t amisovic/kubia:${BUILD_NUMBER} ."
+                sh "sleep 300"
+
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
                 success {
-                    println("Sve OK")
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
