@@ -1,4 +1,9 @@
 pipeline {
+    environment { 
+       registry = "amisovic/test" 
+       registryCredential = 'dockerhub' 
+       dockerImage = '' 
+    }
     agent any
 
     tools {
@@ -9,9 +14,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "docker build -t amisovic/kubia:${BUILD_NUMBER} ."
+                //sh "docker build -t amisovic/kubia:${BUILD_NUMBER} ."
                 //sh "sleep 300"
-
+                dockerImage = docker.build registry + ":$BUILD_NUMBER" 
             }
 
             post {
