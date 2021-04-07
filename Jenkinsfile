@@ -17,7 +17,7 @@ pipeline {
                 //sh "docker build -t amisovic/kubia:${BUILD_NUMBER} ."
                 //sh "sleep 300"
                 script {
-                    docker.build registry + ":${env.BUILD_ID}") 
+                    docker.build registry + ":${env.BUILD_ID}"
                 }
                  
             }
