@@ -16,7 +16,7 @@ pipeline {
             steps {
                 //sh "docker build -t amisovic/kubia:${BUILD_NUMBER} ."
                 //sh "sleep 300"
-                dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                def customImage = docker.build("my-image:${env.BUILD_ID}")  
             }
 
             post {
