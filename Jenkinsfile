@@ -18,7 +18,7 @@ pipeline {
                 //sh "sleep 300"
                 script {
                     println(registry + ":${env.BUILD_ID}")
-                    docker.build registry + ":${env.BUILD_ID}"
+                    dockerImage = docker.build registry + ":${env.BUILD_ID}"
                     docker.withRegistry( '', registryCredential ) { dckerImage.push() }
                 }
                  
