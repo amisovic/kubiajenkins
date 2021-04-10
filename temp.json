@@ -1,0 +1,38 @@
+{
+    "Env": [
+            "FOO=bar",
+            "BAZ=quux"
+    ],
+    "Cmd": [
+            "node app.js"
+    ],
+    "Entrypoint": "",
+    "Image": "amisovic/kubia",
+    "Labels": {
+            "com.example.vendor": "Acme",
+            "com.example.license": "GPL",
+            "com.example.version": "1.0"
+    },
+    "Volumes": {
+      "/volumes/data": {}
+    },
+    "Healthcheck":{
+       "Test": ["CMD-SHELL", "curl localhost:3000"],
+       "Interval": 1000000000,
+       "Timeout": 10000000000,
+       "Retries": 10,
+       "StartPeriod": 60000000000
+    },
+    "WorkingDir": "",
+    "NetworkDisabled": false,
+    "MacAddress": "12:34:56:78:9a:bc",
+    "ExposedPorts": {
+            "8080/tcp": {}
+    },
+    "StopSignal": "SIGTERM",
+    "HostConfig": {
+      "Binds": ["/tmp:/tmp"],
+      "Tmpfs": { "/run": "rw,noexec,nosuid,size=65536k" },
+      "PortBindings": { "8080/tcp": [{ "HostPort": "8889" }] }
+   }
+}
